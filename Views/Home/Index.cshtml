@@ -1,0 +1,43 @@
+﻿@model IEnumerable<dotNET_Project.Models.Post>
+
+@{
+    ViewData["Title"] = "Home";
+}
+
+<div>
+    <a asp-action="CreatePost">
+        <div class="create">
+            <p class="a-create">
+                Create New Post
+            </p>
+        </div>
+    </a>
+</div>
+
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @nameof(item.Title) - @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @nameof(item.Topic) - @Html.DisplayFor(modelItem => item.Topic.Name)
+        </td>
+        <td>
+            @nameof(item.Content) - @Html.DisplayFor(modelItem => item.Content)
+        </td>
+        <td>
+            @nameof(item.DateTime) - @Html.DisplayFor(modelItem => item.DateTime)
+        </td>
+        <td>
+            @nameof(item.User.Nickname) - @Html.DisplayFor(modelItem => item.User.Nickname)
+        </td>
+        <td>
+            <a asp-action="EditPost" asp-route-id="@item.Id">Edit</a> |
+            <a asp-action="DeletePost" asp-route-id="@item.Id">Delete</a> |
+            <a asp-action="ListComments" asp-route-id="@item.Id">Show Comments</a>
+        </td>
+    </tr>
+    <br />
+}
