@@ -5,7 +5,7 @@
 }
 
 <div>
-    <a asp-action="CreatePost">
+    <a asp-action="CreatePost" style="color:white">
         <div class="create">
             <p class="a-create">
                 Create New Post
@@ -17,27 +17,26 @@
 
 @foreach (var item in Model)
 {
-    <tr>
-        <td>
-            @nameof(item.Title) - @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td>
-            @nameof(item.Topic) - @Html.DisplayFor(modelItem => item.Topic.Name)
-        </td>
-        <td>
-            @nameof(item.Content) - @Html.DisplayFor(modelItem => item.Content)
-        </td>
-        <td>
-            @nameof(item.DateTime) - @Html.DisplayFor(modelItem => item.DateTime)
-        </td>
-        <td>
-            @nameof(item.User.Nickname) - @Html.DisplayFor(modelItem => item.User.Nickname)
-        </td>
-        <td>
-            <a asp-action="EditPost" asp-route-id="@item.Id">Edit</a> |
-            <a asp-action="DeletePost" asp-route-id="@item.Id">Delete</a> |
-            <a asp-action="ListComments" asp-route-id="@item.Id">Show Comments</a>
-        </td>
-    </tr>
-    <br />
+
+    <div class="align-content-center">
+        <div class="align-content-center, text-center">
+            <h3>@nameof(item.Title): @Html.DisplayFor(modelItem => item.Title)</h3>
+        </div>
+        <div class="align-content-center, text-center">
+            <h4>@nameof(item.Topic): @Html.DisplayFor(modelItem => item.Topic.Name)</h4>
+        </div >
+        <div class="align-content-center, text-center">
+            @Html.DisplayFor(modelItem => item.Content)
+        </div>
+        <div class="align-content-center, text-center">
+            <span>
+                Post has been written by @Html.DisplayFor(modelItem => item.User.Nickname) at @Html.DisplayFor(modelItem => item.DateTime)
+            </span>
+        </div>
+        <div class="align-content-center, text-center" style="background-color: black;">
+            <a asp-action="EditPost" asp-route-id="@item.Id" style="color:white">Edit Post</a> |
+            <a asp-action="DeletePost" asp-route-id="@item.Id" style="color:white">Delete Post</a> |
+            <a asp-action="ListComments" asp-route-id="@item.Id" style="color:white">Show Comments</a>
+        </div>
+    </div>
 }

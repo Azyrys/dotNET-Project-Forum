@@ -4,46 +4,38 @@
     ViewData["Title"] = "ListComments";
 }
 
-<h1>@Model.FirstOrDefault().Post.Title</h1>
-<h1>@Model.FirstOrDefault().Post.Topic.Name</h1>
-<h1>@Model.FirstOrDefault().Post.Content</h1>
 
-<p>
-    <a asp-action="CreateComment" asp-route-PostID="@ViewBag.PostID">Create New </a>
-</p>
+<div class ="align-content-center, text-center">
+<h2>Title: @Model.FirstOrDefault().Post.Title</h2>
+<h3>Topic: @Model.FirstOrDefault().Post.Topic.Name</h3>
+<h4>@Model.FirstOrDefault().Post.Content</h4>
+</div>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Content)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.User.Nickname)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DateTime)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Content)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.User.Nickname)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateTime)
-            </td>
-            <td>
-                <a asp-action="EditComment" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="DeleteComment" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
+<div>
+    <a asp-action="CreatePost" style="color:white;">
+        <div class="create">
+            <p class="a-create" style="font-size:18px;">
+                Create New Comment
+            </p>
+        </div>
+    </a>
+</div>
+
+@foreach (var item in Model)
+{
+    <div class="align-content-center">
+        <div class="align-content-center, text-center">
+            @Html.DisplayFor(modelItem => item.Content)
+
+        </div>
+        <div class="align-content-center, text-center">
+            <span>
+                Comment has been written by @Html.DisplayFor(modelItem => item.User.Nickname) at @Html.DisplayFor(modelItem => item.DateTime)
+            </span>
+        </div>
+        <div class="align-content-center, text-center" style="background-color: black;">
+            <a asp-action="EditComment" asp-route-id="@item.Id" style="color:white;">Edit</a> |
+            <a asp-action="DeleteComment" asp-route-id="@item.Id" style="color:white;">Delete</a>
+        </div>
+    </div>
 }
-    </tbody>
-</table>
