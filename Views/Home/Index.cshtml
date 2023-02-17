@@ -24,7 +24,7 @@
         </div>
         <div class="align-content-center, text-center">
             <h4>@nameof(item.Topic): @Html.DisplayFor(modelItem => item.Topic.Name)</h4>
-        </div >
+        </div>
         <div class="align-content-center, text-center">
             @Html.DisplayFor(modelItem => item.Content)
         </div>
@@ -34,8 +34,13 @@
             </span>
         </div>
         <div class="align-content-center, text-center" style="background-color: black;">
-            <a asp-action="EditPost" asp-route-id="@item.Id" style="color:white">Edit Post</a> |
-            <a asp-action="DeletePost" asp-route-id="@item.Id" style="color:white">Delete Post</a> |
+            @if (TempData["role"] == "admin" || User.Identity.Name == item.User.UserName)
+            {
+                <a asp-action="EditPost" asp-route-id="@item.Id" style="color:white">Edit Post</a>
+                <span>|</span>
+                <a asp-action = "DeletePost" asp-route-id = "@item.Id" style = "color:white" > Delete Post </a> 
+                <span>|</span>
+            }
             <a asp-action="ListComments" asp-route-id="@item.Id" style="color:white">Show Comments</a>
         </div>
     </div>
