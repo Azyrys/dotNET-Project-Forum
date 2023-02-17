@@ -5,7 +5,9 @@ namespace dotNET_Project.Models
     {
         [Key]
         public int Id { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "Prosze podaj Tytul wiadomosci")]
+        [MinLength(2), MaxLength(15)]
         public string Name { get; set; }
     }
 }

@@ -9,7 +9,11 @@ namespace dotNET_Project.Models
         public int Id { get; set; }
         [Required]
         public Post Post { get; set; }
-        [Required]
+
+
+        [Required(ErrorMessage = "Prosze podaj Tresc wiadomosci")]
+        [MinLength(10), MaxLength(50)]
+
         public string Content { get; set; }
         [Required]
         public dotNET_ProjectUser User { get; set; }

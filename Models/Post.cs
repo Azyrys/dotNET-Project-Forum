@@ -8,11 +8,16 @@ namespace dotNET_Project.Models
     {
         [Key]
         public int Id { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "Prosze podaj Tytul wiadomosci")]
+        [MinLength(2), MaxLength(20)]
         public string Title { get; set; }
+
         [Required]
         public Topic Topic { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "Prosze podaj Tresc wiadomosci")]
+        [MinLength(10), MaxLength(50)]
         public string Content { get; set; }
         [Required]
         public dotNET_ProjectUser User { get; set; }
