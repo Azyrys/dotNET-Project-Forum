@@ -230,6 +230,47 @@ namespace dotNET_Project.Controllers
             }
 
         }
+
+        public ActionResult EditTopic(int id)
+        {
+            if (isAdmin)
+                TempData["role"] = "admin";
+            if (_context.AllUsers.ToList().Find(x => x.Id == _userId) is not null && (_context.AllUsers.ToList().Find(x => x.Id == _userId).Permissions == "admin" || _context.Posts.ToList().Find(x => x.Id == id).User.Id == _userId))
+            {
+                return View(_context.Topics.Find(id));
+            }
+            else
+            {
+                return RedirectToAction(nameof(Forbidden));
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditTopic(int id, Topic topic)
+        {
+            if (isAdmin)
+                TempData["role"] = "admin";
+            if (_context.AllUsers.ToList().Find(x => x.Id == _userId) is not null && (_context.AllUsers.ToList().Find(x => x.Id == _userId).Permissions == "admin" || _context.Posts.ToList().Find(x => x.Id == id).User.Id == _userId))
+            {
+                try
+                {
+                    Topic topicUpdate = _context.Topics.Find(id);
+                    topicUpdate.Name = topic.Name;
+                    _context.SaveChanges();
+                    return RedirectToAction(nameof(Index));
+                }
+                catch
+                {
+                    return View();
+                }
+            }
+            else
+            {
+                return RedirectToAction(nameof(Forbidden));
+            }
+
+        }
         public ActionResult ListComments(int id)
         {
             if (isAdmin)
