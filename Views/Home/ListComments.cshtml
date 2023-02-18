@@ -12,7 +12,7 @@
 </div>
 
 <div>
-    <a asp-action="CreateComment" style="color:white;">
+    <a asp-action="CreateComment" asp-route-PostID="@ViewBag.PostID" style="color:white;">
         <div class="create">
             <p class="a-create" style="font-size:18px;">
                 Create New Comment
