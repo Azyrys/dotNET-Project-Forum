@@ -6,9 +6,9 @@
 
 
 <div class="align-content-center, text-center">
-    <h2>Title: @Model.FirstOrDefault().Post.Title</h2>
-    <h3>Topic: @Model.FirstOrDefault().Post.Topic.Name</h3>
-    <h4>@Model.FirstOrDefault().Post.Content</h4>
+    <h2>Title: @ViewBag.PostTitle</h2>
+    <h3>Topic: @ViewBag.Topic</h3>
+    <h4>@ViewBag.PostContent</h4>
 </div>
 
 <div>

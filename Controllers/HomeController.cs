@@ -235,6 +235,10 @@ namespace dotNET_Project.Controllers
             if (isAdmin)
                 TempData["role"] = "admin";
             ViewBag.PostID = id;
+            Post post = _context.Posts.Include(t => t.Topic).ToList().Find(p => p.Id == id);
+            ViewBag.PostTitle = post.Title;
+            ViewBag.PostContent = post.Content;
+            ViewBag.Topic = post.Topic.Name;
             return View(_context.Comments.Include(u => u.User).Include(p => p.Post).Include(t => t.Post.Topic).ToList().Where(c => c.Post.Id == id));
         }
 
